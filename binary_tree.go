@@ -1,4 +1,4 @@
-package bt
+package libtree
 
 func NewBinaryTree() *BinaryTree {
 	return &BinaryTree{}

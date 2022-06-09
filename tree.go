@@ -1,4 +1,4 @@
-package bt
+package libtree
 
 type Tree interface {
 	Inserte(Key)
