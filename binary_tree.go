@@ -12,7 +12,7 @@ func (b *BinaryTree) Insert(k Key) {
 	if b.root == nil {
 		b.root = NewNode(k)
 	} else {
-		insert(b.root, k)
+		b.root.insert(k)
 	}
 }
 
@@ -20,7 +20,7 @@ func (b *BinaryTree) Traverse(mode Mode, fn func(k Key)) {
 	b.root.traverse(mode, fn)
 }
 
-func insert(parent *Node, k Key) {
+func (parent *Node) insert(k Key) {
 	if parent == nil {
 		p := NewNode(k)
 		*parent = *p
@@ -29,13 +29,14 @@ func insert(parent *Node, k Key) {
 			if parent.l == nil {
 				parent.l = NewNode(k)
 			} else {
-				insert(parent.l, k)
+				parent.l.insert(k)
 			}
 		} else {
 			if parent.r == nil {
 				parent.r = NewNode(k)
 			} else {
-				insert(parent.r, k)
+				parent.r.insert(k)
+
 			}
 		}
 	}
