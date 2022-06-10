@@ -1,4 +1,4 @@
-package libtree
+package pungue
 
 import (
 	"errors"
@@ -27,10 +27,14 @@ func (g *Graph) AddVertex(v Vertex) error {
 
 	g.vertices[len(g.vertices)] = v
 
-	aux := make([][]int, len(g.adjacencyMatrix)-1)
-	for i := 0; i < len(g.adjacencyMatrix)-1; i++ {
-		aux = append(aux, repeat(0, len(g.adjacencyMatrix)-2))
+	aux := newAdjacencyMatrix(len(g.adjacencyMatrix) + 1)
+	for i, l := range g.adjacencyMatrix {
+		for j, e := range l {
+			aux[i][j] = e
+		}
 	}
+
+	g.adjacencyMatrix = aux
 
 	return nil
 }
@@ -48,12 +52,36 @@ func (g *Graph) RemoveVertex(v Vertex) error {
 		return errors.New("graph: invalid vertex")
 	}
 
-	aux := make([][]int, len(g.adjacencyMatrix)-1)
-	for i := 0; i < len(g.adjacencyMatrix)-1; i++ {
-		aux = append(aux, repeat(0, len(g.adjacencyMatrix)-2))
+	arr := newAdjacencyMatrix(len(g.adjacencyMatrix) - 1)
+
+	for i, l := range g.adjacencyMatrix {
+		if i == pos {
+			continue
+		}
+
+		for j, e := range l {
+			if j == pos {
+				continue
+			} else if i >= pos || j >= pos {
+				arr[i-1][j-1] = e
+			} else {
+				arr[i][j] = e
+			}
+		}
 	}
 
+	g.adjacencyMatrix = arr[:]
+
 	return nil
+}
+
+func newAdjacencyMatrix(l int) [][]int {
+	arr := make([][]int, l)
+	for i := 0; i < l; i++ {
+		arr = append(arr, repeat(0, l))
+	}
+
+	return arr[:]
 }
 
 func repeat(v, n int) []int {
@@ -62,7 +90,7 @@ func repeat(v, n int) []int {
 		arr = append(arr, v)
 	}
 
-	return arr
+	return arr[:]
 }
 
 func (g *Graph) AddEdge(v, w int) error {

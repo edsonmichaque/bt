@@ -1,4 +1,4 @@
-package libtree
+package pungue
 
 type Tree interface {
 	Inserte(Key)
