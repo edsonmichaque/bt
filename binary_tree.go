@@ -28,12 +28,14 @@ func (parent *Node) insert(k Key) {
 		if k.Less(parent.k) {
 			if parent.l == nil {
 				parent.l = NewNode(k)
+				parent.l.p = parent
 			} else {
 				parent.l.insert(k)
 			}
 		} else {
 			if parent.r == nil {
 				parent.r = NewNode(k)
+				parent.r.p = parent
 			} else {
 				parent.r.insert(k)
 

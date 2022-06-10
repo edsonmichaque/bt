@@ -2,6 +2,7 @@ package libtree
 
 type Node struct {
 	k Key
+	p *Node
 	l *Node
 	r *Node
 }
