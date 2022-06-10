@@ -27,7 +27,7 @@ func (g *Graph) AddVertex(v Vertex) error {
 
 	g.vertices[len(g.vertices)] = v
 
-	aux := newAdjacencyMatrix(len(g.adjacencyMatrix) + 1)
+	aux := newMatrix(len(g.adjacencyMatrix) + 1)
 	for i, l := range g.adjacencyMatrix {
 		for j, e := range l {
 			aux[i][j] = e
@@ -52,7 +52,7 @@ func (g *Graph) RemoveVertex(v Vertex) error {
 		return errors.New("graph: invalid vertex")
 	}
 
-	arr := newAdjacencyMatrix(len(g.adjacencyMatrix) - 1)
+	arr := newMatrix(len(g.adjacencyMatrix) - 1)
 
 	for i, l := range g.adjacencyMatrix {
 		if i == pos {
@@ -75,19 +75,19 @@ func (g *Graph) RemoveVertex(v Vertex) error {
 	return nil
 }
 
-func newAdjacencyMatrix(l int) [][]int {
+func newMatrix(l int) [][]int {
 	arr := make([][]int, l)
 	for i := 0; i < l; i++ {
-		arr = append(arr, repeat(0, l))
+		arr = append(arr, newSlice(0, l))
 	}
 
 	return arr[:]
 }
 
-func repeat(v, n int) []int {
-	arr := make([]int, n)
-	for i := 0; i < n; i++ {
-		arr = append(arr, v)
+func newSlice(value, size int) []int {
+	arr := make([]int, size)
+	for i := 0; i < size; i++ {
+		arr = append(arr, value)
 	}
 
 	return arr[:]
