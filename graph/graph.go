@@ -21,7 +21,7 @@ type Vertex interface {
 	Eq(Vertex) bool
 }
 
-func NewGraph() *Graph {
+func New() *Graph {
 	return &Graph{}
 }
 
