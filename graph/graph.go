@@ -1,4 +1,4 @@
-package pungue
+package graph
 
 import (
 	"errors"

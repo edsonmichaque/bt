@@ -3,7 +3,7 @@ package edge
 import (
 	"math"
 
-	"github.com/edsonmichaque/pungue"
+	"github.com/edsonmichaque/pungue/graph"
 )
 
 var (
@@ -16,25 +16,25 @@ type Int struct {
 	Value int
 }
 
-func (v Int) Add(other pungue.Edge) pungue.Edge {
+func (v Int) Add(other graph.Edge) graph.Edge {
 	return Int{
 		Value: v.Value + other.(Int).Value,
 	}
 }
 
-func (v Int) Eq(other pungue.Edge) bool {
+func (v Int) Eq(other graph.Edge) bool {
 	return v.Value == other.(Int).Value
 }
 
-func (v Int) Diff(other pungue.Edge) bool {
+func (v Int) Diff(other graph.Edge) bool {
 	return v.Value != other.(Int).Value
 }
 
-func (v Int) Gt(other pungue.Edge) bool {
+func (v Int) Gt(other graph.Edge) bool {
 	return v.Value > other.(Int).Value
 }
 
-func (v Int) Lt(other pungue.Edge) bool {
+func (v Int) Lt(other graph.Edge) bool {
 	return v.Value < other.(Int).Value
 }
 
