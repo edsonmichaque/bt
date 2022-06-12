@@ -38,11 +38,11 @@ func (v Int) Lt(other graph.Edge) bool {
 	return v.Value < other.(Int).Value
 }
 
-func (v Int) Inf() bool {
+func (v Int) IsInfinity() bool {
 	return v.Value == math.MaxInt
 }
 
-func (v Int) Zero() bool {
+func (v Int) IsZero() bool {
 	return v.Value == 0
 }
 

@@ -8,8 +8,8 @@ import (
 type Edge interface {
 	Add(Edge) Edge
 	Gt(Edge) bool
-	Inf() bool
-	Zero() bool
+	IsInfinity() bool
+	IsZero() bool
 }
 
 type Graph struct {
@@ -134,8 +134,8 @@ func Dijkstra(g [][]Edge, src int) [][]Edge {
 	for i, l := range g {
 		if _, ok := visited[i]; ok {
 			for j, c := range l {
-				if c != nil && !c.Zero() {
-					if paths[src][j].Inf() && paths[src][i].Inf() {
+				if c != nil && !c.IsZero() {
+					if paths[src][j].IsInfinity() && paths[src][i].IsInfinity() {
 						paths[src][j] = c
 					} else if paths[src][j].Gt(paths[src][i].Add(c)) {
 						paths[src][j] = paths[src][i].Add(c)
@@ -174,11 +174,11 @@ func (v Inf) Lt(other Edge) bool {
 	return false
 }
 
-func (v Inf) Inf() bool {
+func (v Inf) IsInfinity() bool {
 	return true
 }
 
-func (v Inf) Zero() bool {
+func (v Inf) IsZero() bool {
 	return false
 }
 
