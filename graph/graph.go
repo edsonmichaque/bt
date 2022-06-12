@@ -5,13 +5,6 @@ import (
 	"math"
 )
 
-type Edge interface {
-	Add(Edge) Edge
-	Gt(Edge) bool
-	IsInfinity() bool
-	IsZero() bool
-}
-
 type Graph struct {
 	vertices        map[int]Vertex
 	adjacencyMatrix [][]int

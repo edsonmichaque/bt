@@ -8,7 +8,7 @@ type Node struct {
 }
 
 type Key interface {
-	Less(Key) bool
+	Lt(Key) bool
 }
 
 func NewNode(v Key) *Node {

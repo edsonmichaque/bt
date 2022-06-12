@@ -25,7 +25,7 @@ func (parent *Node) insert(k Key) {
 		p := NewNode(k)
 		*parent = *p
 	} else {
-		if k.Less(parent.k) {
+		if k.Lt(parent.k) {
 			if parent.l == nil {
 				parent.l = NewNode(k)
 				parent.l.p = parent
