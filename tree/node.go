@@ -1,4 +1,4 @@
-package pungue
+package tree
 
 type Node struct {
 	k Key

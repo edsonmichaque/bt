@@ -1,4 +1,4 @@
-package pungue
+package tree
 
 func NewBinaryTree() *BinaryTree {
 	return &BinaryTree{}
