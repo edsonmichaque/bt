@@ -20,7 +20,7 @@ type Graph struct {
 }
 
 type Vertex interface {
-	Equal(Vertex) bool
+	Eq(Vertex) bool
 }
 
 func NewGraph() *Graph {
@@ -29,7 +29,7 @@ func NewGraph() *Graph {
 
 func (g *Graph) AddVertex(v Vertex) error {
 	for _, e := range g.vertices {
-		if v.Equal(e) {
+		if v.Eq(e) {
 			return errors.New("graph: cannot add vertex")
 		}
 	}
@@ -51,7 +51,7 @@ func (g *Graph) AddVertex(v Vertex) error {
 func (g *Graph) RemoveVertex(v Vertex) error {
 	pos := math.MaxInt
 	for i, e := range g.vertices {
-		if v.Equal(e) {
+		if v.Eq(e) {
 			pos = i
 			break
 		}
