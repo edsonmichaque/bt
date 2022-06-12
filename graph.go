@@ -110,3 +110,71 @@ func (g *Graph) RemoveEdge(v, w int) error {
 	g.adjacencyMatrix[v][w] = 0
 	return nil
 }
+
+func Dijkstra(g [][]Edge, src int) [][]Edge {
+	paths := make([][]Edge, len(g))
+	for i, l := range g {
+		paths[i] = make([]Edge, len(l))
+		for j := range g {
+			paths[i][j] = Inf{}
+		}
+	}
+
+	visited := map[int]bool{
+		src: true,
+	}
+
+	for i, l := range g {
+		if _, ok := visited[i]; ok {
+			for j, c := range l {
+				if c != nil && !c.Zero() {
+					if paths[src][j].Inf() && paths[src][i].Inf() {
+						paths[src][j] = c
+					} else if paths[src][j].Gt(paths[src][i].Add(c)) {
+						paths[src][j] = paths[src][i].Add(c)
+					}
+
+					visited[j] = true
+				}
+			}
+		}
+	}
+
+	return paths
+}
+
+type Inf struct {
+	Value int
+}
+
+func (v Inf) Add(other Edge) Edge {
+	return Inf{}
+}
+
+func (v Inf) Eq(other Edge) bool {
+	return false
+}
+
+func (v Inf) Diff(other Edge) bool {
+	return false
+}
+
+func (v Inf) Gt(other Edge) bool {
+	return false
+}
+
+func (v Inf) Lt(other Edge) bool {
+	return false
+}
+
+func (v Inf) Inf() bool {
+	return true
+}
+
+func (v Inf) Zero() bool {
+	return false
+}
+
+func (v Inf) String() string {
+	return "+Inf"
+}
