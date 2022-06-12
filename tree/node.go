@@ -41,7 +41,7 @@ func (n *Node) BalanceFactor() int {
 	return n.l.Height() - n.r.Height()
 }
 
-func (n *Node) traverse(mode Mode, fn func(k Key)) {
+func (n *Node) traverse(mode TraversalMode, fn func(k Key)) {
 	if n != nil {
 		if mode == Postorder {
 			n.l.traverse(mode, fn)

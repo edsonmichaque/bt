@@ -16,7 +16,7 @@ func (b *BinaryTree) Insert(k Key) {
 	}
 }
 
-func (b *BinaryTree) Traverse(mode Mode, fn func(k Key)) {
+func (b *BinaryTree) Traverse(mode TraversalMode, fn func(k Key)) {
 	b.root.traverse(mode, fn)
 }
 

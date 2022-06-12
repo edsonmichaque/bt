@@ -1,9 +1,9 @@
 package tree
 
-type Mode int
+type TraversalMode int
 
 const (
-	Inorder Mode = iota
+	Inorder TraversalMode = iota
 	Preorder
 	Postorder
 )

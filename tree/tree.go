@@ -2,5 +2,5 @@ package tree
 
 type Tree interface {
 	Inserte(Key)
-	Traverse(Mode, func(Key))
+	Traverse(TraversalMode, func(Key))
 }
